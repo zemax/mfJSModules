@@ -10539,10 +10539,6 @@
 
 	var _tape2 = _interopRequireDefault(_tape);
 
-	var _extend = __webpack_require__(147);
-
-	var _extend2 = _interopRequireDefault(_extend);
-
 	var _observable = __webpack_require__(151);
 
 	var _observable2 = _interopRequireDefault(_observable);
@@ -10551,7 +10547,8 @@
 
 	(0, _tape2.default)('observable', function (t) {
 		function C() {}
-		(0, _extend2.default)(C.prototype, _observable2.default);
+
+		Object.assign(C.prototype, _observable2.default);
 
 		var a = new C();
 		var b = new C();
@@ -10588,6 +10585,9 @@
 
 		c.trigger('pouet');
 		t.equal(count, 5);
+
+		c.trigger('pouet');
+		t.equal(count, 6);
 
 		t.end();
 	});

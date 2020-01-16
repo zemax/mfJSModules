@@ -1,11 +1,11 @@
 import test from 'tape';
-import extend from '../../../modules/core/extend' ;
 import observable from '../../../modules/core/observable' ;
 
 test( 'observable', function ( t ) {
 	function C() {
 	}
-	extend( C.prototype, observable );
+
+	Object.assign( C.prototype, observable );
 
 	var a = new C();
 	var b = new C();
@@ -42,6 +42,9 @@ test( 'observable', function ( t ) {
 
 	c.trigger( 'pouet' );
 	t.equal( count, 5 );
+
+	c.trigger( 'pouet' );
+	t.equal( count, 6 );
 
 	t.end();
 } );
